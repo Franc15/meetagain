@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+<!-- form -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Create new Account</h1>
+        </div>
+    </div>
+<form action="/auth/signup" method="POST">
+    <div class="row p-5">
+    <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter your first name*" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter your last name*" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email*" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">Phone</label>
+                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone*" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventName">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address*" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventName">City</label>
+                <input type="text" class="form-control" id="city" name="city" placeholder="Enter your city*" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventName">State</label>
+                <input type="text" class="form-control" id="state" name="state" placeholder="Enter your state*" required>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventName">Zip</label>
+                <input type="text" class="form-control" id="zip" name="zip" placeholder="Enter your zip*" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">User Role</label>
+                <select class="form-control" id="role" name="role" required>
+                    <option value="user" selected>Alumni</option>
+                    <option value="manager">Manager</option>
+                </select>
+            </div>
+        </div><div class="col-md-6">
+            <div class="form-group">
+                <label for="eventName">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password*">
+            </div>
+        </div>
+
+        {{#message}}
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+        </div>
+        {{/message}}
+        
+        
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+    </div>
+</form>
+</div>
+<!-- end form -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+  </body>
+</html>

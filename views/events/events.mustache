@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+    <!-- hero -->
+    <div class="container">
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Events</h1>
+          <p class="col-md-8 fs-4">
+            See all the upcoming and past events here.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- end of hero -->
+
+    <!-- events -->
+    <div class="container">
+      <div class="container-fluid py-5">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+              <!-- sidebar -->
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">Filters</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item">Categories</li>
+                    <li class="list-group-item">Date</li>
+                    <li class="list-group-item">Created By</li>
+                  </ul>
+                </div>
+              </div>
+              <!-- end of sidebar -->
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <!-- item -->
+                {{#events}}
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title" onclick="handleClick('{{_id}}')">{{title}}</h5>
+                        <p class="card-text">{{description}}</p>
+                        <p class="card-text"><small class="text-muted">{{date}} from {{start}} - {{end}}</small></p>
+                     
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  {{/events}}
+                <!-- end of item -->
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of events -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+
+    <script>
+        function handleClick(id) {
+            window.location.href = "/events/" + id;
+        }
+    </script>
+  </body>
+</html>

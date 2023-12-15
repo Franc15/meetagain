@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+    <!-- hero -->
+    <div class="container">
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Dashboard</h1>
+          <p class="col-md-8 fs-4">
+            Welcome to the dashboard. Here you can view all of your events and edit them.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- end of hero -->
+
+    <!-- events -->
+    <div class="container">
+      <div class="container-fluid py-5">
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" onclick="addEvent()">Add New Event</button>
+        </div>
+    </div>
+        <div class="row">
+        <div class="col-12">
+        {{#isManager}}
+            <h1 class="display-5">Manage Alumni Events</h1>
+        {{/isManager}}
+        {{^isManager}}
+            <h1 class="display-5">My Events</h1>
+        {{/isManager}}
+        </div>
+            
+            <div class="col-12">
+                <!-- item -->
+                {{#events}}
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title" onclick="handleClick('{{_id}}')">{{title}}</h5>
+                        <p class="card-text">{{description}}</p>
+                        <p class="card-text">Location: {{location}}</p>
+                        <p class="card-text">Category: {{category}}</p>
+                        <p class="card-text"><small class="text-muted">Created by: {{createdBy}}</small></p>
+                        <p class="card-text"><small class="text-muted">{{date}} from {{start}} - {{end}}</small></p>
+                        <button class="btn btn-danger" onclick="deleteEvent('{{_id}}')">Delete</button>
+                        <button class="btn btn-primary" onclick="editEvent('{{_id}}')">Edit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  {{/events}}
+                  {{^events}}
+                  <h1 class="display-5">No events found</h1>
+                  {{/events}}
+                <!-- end of item -->
+            </div>
+        </div>
+        <div class="row">
+        {{#isManager}}
+        <div class="col-12">
+            <h1 class="display-5">Manage Alumni Accounts</h1>
+        </div>
+        {{/isManager}}
+            {{#users}}
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                            <div class="card-body">
+                                <h5 class="card-title">{{firstname}} {{lastname}}</h5>
+                                <p class="card-text">Email: {{email}}</p>
+                                <p class="card-text">Address: {{address}}, {{city}}, {{state}}</p>
+                                <p class="card-text">Role: <small class="text-muted">{{role}}</small></p>
+                                <button class="btn btn-danger" onclick="deleteUser('{{_id}}')">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/users}}
+        </div>
+      </div>
+    </div>
+    <!-- end of events -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+
+    <script>
+        function handleClick(id) {
+            window.location.href = "/events/" + id;
+        }
+
+        function deleteEvent(id) {
+            fetch("/events/" + id, {
+                method: "DELETE",
+            }).then(res => {
+                // realod page
+                window.location.reload();
+            });
+        }
+
+        function editEvent(id) {
+            window.location.href = "/events/edit/" + id;
+        }
+
+        function addEvent() {
+            window.location.href = "/events/new";
+        }
+    </script>
+  </body>
+</html>

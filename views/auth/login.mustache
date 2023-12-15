@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+<!-- form -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Log in to your account</h1>
+        </div>
+    </div>
+<form action="/auth/login" method="POST">
+    <div class="row p-5">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventName">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email*" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventName">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password*">
+            </div>
+        </div>
+
+        {{#message}}
+        <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+        </div>
+        {{/message}}
+        {{^message}}
+        <div></div>
+        {{/message}}
+        
+        
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+</form>
+</div>
+<!-- end form -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+  </body>
+</html>

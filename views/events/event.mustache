@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+   
+
+    <!-- events -->
+    {{#event}}
+    <div class="container">
+        <div class="container-fluid py-5">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <!-- image -->
+                    <img src="{{imageUrl}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <!-- event details -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">{{title}}</h5>
+                            <p class="card-text">{{description}}</p>
+                            <p class="card-text"><small class="text-muted">Category: {{category}}</small></p>
+                            <p class="card-text"><small class="text-muted">Location: {{location}}</small></p>
+                            <p class="card-text"><small class="text-muted">{{date}} from {{start}} - {{end}}</small></p>
+                            <a href="#" class="btn btn-primary">Reserve Seat</a>
+                        </div>
+                    </div>
+                    <!-- end of event details -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{/event}}
+    {{^event}}
+    <h3 class="text-center">Event could not be loaded!</h3>
+    {{/event}}
+    <!-- end of events -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+<!-- form -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Create Event</h1>
+        </div>
+    </div>
+<form action="/events" method="POST">
+    <div class="row p-5">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventName">Event Title</label>
+                <input type="text" class="form-control" id="eventName" name="title" placeholder="Enter event name">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventDescription">Event Description</label>
+                <textarea class="form-control" id="eventDescription" rows="3" name="description" placeholder="Enter event description"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" class="form-control" id="eventDate" name="date">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventStart">Event Start Time</label>
+                <input type="text" class="form-control" id="eventStart" name="start">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventEnd">Event End Time</label>
+                <input type="text" class="form-control" id="eventEnd" name="end">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventLocation">Event Venue</label>
+                <input type="text" class="form-control" id="eventLocation" name="location" placeholder="Enter event location">
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventLocation">Event Category</label>
+                <select class="form-control" id="eventCategory" name="category">
+                    <option value="net">Networking</option>
+                    <option value="pro">Professional</option>
+                    <option value="cam">Campus Events</option>
+                    <option value="soc">Social</option>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="eventLocation">Event Image URL</label>
+                <input type="text" class="form-control" id="eventImage" name="imageUrl" placeholder="Copy image URL here">
+            </div>
+        </div>
+        
+        
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Create Event</button>
+        </div>
+    </div>
+</form>
+</div>
+<!-- end form -->
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+  </body>
+</html>

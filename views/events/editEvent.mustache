@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{>common/header}}
+  </head>
+  <body>
+    {{>common/navbar}}
+
+<!-- form -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Edit Event</h1>
+        </div>
+    </div>
+    {{#event}}
+<form>
+    <div class="row p-5">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventName">Event Title</label>
+                <input type="text" class="form-control" id="eventName" value="{{title}}" name="title" placeholder="Enter event name">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="eventDescription">Event Description</label>
+                <textarea class="form-control" id="eventDescription" rows="3" name="description" placeholder="Enter event description">{{description}}</textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" class="form-control" id="eventDate" value="{{date}}" name="date">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventStart">Event Start Time</label>
+                <input type="text" class="form-control" id="eventStart" value="{{start}}" name="start">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="eventEnd">Event End Time</label>
+                <input type="text" class="form-control" id="eventEnd" value="{{end}}" name="end">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventLocation">Event Venue</label>
+                <input type="text" class="form-control" id="eventLocation" name="location" value="{{location}}" placeholder="Enter event location">
+            </div>
+        </div>
+        
+        {{! <div class="col-md-6">
+            <div class="form-group">
+                <label for="eventLocation">Event Category</label>
+                <select class="form-control" id="eventCategory" name="category">
+                    <option value="net">Networking</option>
+                    <option value="pro">Professional</option>
+                    <option value="cam">Campus Events</option>
+                    <option value="soc">Social</option>
+            </div>
+        </div> }}
+
+        <div class="col-12">
+            <div class="form-group">
+                <label for="eventLocation">Event Image URL</label>
+                <input type="text" class="form-control" id="eventImage" name="imageUrl" value={{imageUrl}} placeholder="Copy image URL here">
+            </div>
+        </div>
+        
+        
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" onclick="updateEvent('{{_id}}')">Edit Event</button>
+        </div>
+    </div>
+</form>
+{{/event}}
+</div>
+<!-- end form -->
+
+<script>
+    function updateEvent(id) {
+        var title = document.getElementById('eventName').value;
+        var description = document.getElementById('eventDescription').value;
+        var date = document.getElementById('eventDate').value;
+        var start = document.getElementById('eventStart').value;
+        var end = document.getElementById('eventEnd').value;
+        var location = document.getElementById('eventLocation').value;
+        var imageUrl = document.getElementById('eventImage').value;
+
+        var data = {
+            title: title,
+            description: description,
+            date: date,
+            start: start,
+            end: end,
+            location: location,
+            imageUrl: imageUrl
+        }
+
+        $.ajax({
+            url: '/events/edit/' + id,
+            type: 'PUT',
+            data: data,
+            success: function(result) {
+                window.location.replace("/events/" + id);
+            }
+        });
+    }
+</script>
+
+    {{>common/footer}}
+
+    {{>common/scripts}}
+  </body>
+</html>
